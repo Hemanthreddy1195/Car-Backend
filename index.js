@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
 
         // Access the database and collection
         const db = client.db(dbName);
-        const collection = db.collection('cars');
+        const collection = db.collection('car');
         
         // Fetch all car data from the collection
         const cars = await collection.find({}).toArray();
