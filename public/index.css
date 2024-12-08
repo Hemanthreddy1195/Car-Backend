@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    border: 1px solid black;
+    padding: 15px;
+    margin: auto;
+}
+.navigation-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-content: center;
+    gap: 20px;
+}
+
+.navigation-bar {
+    border-bottom: 2px solid black;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 20px;
+}
+
+.navigation-list a, .profile-info a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+
+.profile-skills {
+    padding: 20px;
+    border-bottom: 2px solid black;
+    display: grid;
+    grid-template-columns: 45% 2px 45%; /* Grid for profile, separator, and skills */
+    gap: 20px;
+    align-items: center;
+}
+
+.user-profile {
+    text-align: center;
+}
+
+.separator {
+    width: 2px;
+    height: 100px;
+    background-color: black;
+    justify-self: center; /* Center the separator */
+}
+
+.username {
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.user-photo {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.skills-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Skills title on top, list on bottom */
+    text-align: left;
+}
+
+.skills-title {
+    display: grid;
+    grid-template-columns: 40px auto; /* Logo and heading side by side */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skills-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.skills-heading {
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.skills-list {
+    margin-top: 10px;
+}
+
+.skills-list p {
+    margin-bottom: 10px;
+}
+
+
+.experience-list {
+    margin-top: 20px;
+    display: grid; /* Use grid for layout */
+    grid-template-columns: repeat(2, 1fr); /* Two columns to fit items in one row */
+    gap: 20px; /* Space between items */
+}
+
+.experience-item {
+    padding: 10px; /* Optional: Add padding for better spacing */
+   
+}
+
+
+
+
+
+/* The rest of the common styles */
+.education-background {
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
+.education-header {
+    display: grid;
+    grid-template-columns: 40px auto; /* Icon and title side by side */
+    align-items: center; /* Align vertically */
+    margin-bottom: 20px;
+}
+
+.education-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.education-title {
+    font-weight: 900;
+    font-size: 20px;
+    margin-left:20px
+}
+
+.education-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Display 3 items in one row */
+    gap: 20px; /* Space between items */
+}
+
+.education-item {
+    display: grid; /* Stack degree on top of university name */
+    grid: column; /* Align text vertically */
+}
+
+.education-item p:first-child,
+.experience-item p:first-child,
+.blog-item p:first-child {
+    font-weight: bold; /* Make the first paragraph bold for all specified items */
+}
+
+
+.contact-section {
+    display: grid;
+    grid-auto-flow: column; /* Ensures items are placed in a single row */
+    grid-template-columns: auto auto repeat(4, auto); /* Auto-sized for icons and text */
+    align-items: center;
+/* Ensures alignment to the left */
+    column-gap: 10px; /* Reduces the gap between elements */
+    padding: 5px;
+    width: max-content; /* Ensures it only takes the required space */
+    margin-top: 15px;
+}
+
+/* This section belongs to blog */
+.blog-list {
+    margin-top: 20px;
+    display: grid; /* Use grid for layout */
+    grid-template-columns: repeat(1, 1fr); /* Two columns to fit items in one row */
+    gap: 20px; /* Space between items */
+}
+
+.blog-item {
+    padding: 0px 10px 20px 0px;
+   
+}
+
+
+
+.contact-icon {
+    height: 30px; /* Reduce the size of the contact icon */
+    width: 30px;
+}
+
+.social-icon {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+}
+
+.contact-text {
+    font-size: 16px;
+    font-weight: bold;
+   margin-left: 15px;
+}
+

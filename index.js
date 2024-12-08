@@ -1,6 +1,8 @@
 const http = require('http');
 const mongoose = require('mongoose');
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
 
 // MongoDB connection
 mongoose.connect('mongodb+srv://hemanth372reddy:Zm4KV20j7ZNwRg6n@cluster1.plc5q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1', {})
@@ -26,7 +28,6 @@ const Car = mongoose.model('Car', carSchema);
 const cars = [
   { name: 'Accord', modelYear: 2020, mileage: 30000, previousOwnerName: 'John Doe', rentPerMonth: 500, priceToBuy: 25000, estimatedInsurance: 1200, anybodyRemarks: 'Well maintained, minor scratches.' },
   { name: 'HondaCRV', modelYear: 2019, mileage: 45000, previousOwnerName: 'Jane Smith', rentPerMonth: 550, priceToBuy: 23000, estimatedInsurance: 1100, anybodyRemarks: 'Comfortable ride, good condition.' },
-  // Add more car objects as needed...
 ];
 
 // Function to insert cars into the database
@@ -46,6 +47,37 @@ async function insertCars() {
 
 // Populate the database on server start
 insertCars();
+
+// Define the folder containing your portfolio
+const publicFolderPath = path.join(__dirname, 'src', 'public');
+
+// Function to serve static files
+const serveStaticFile = (filePath, res) => {
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('404: File Not Found');
+    } else {
+      const ext = path.extname(filePath).toLowerCase();
+      let contentType = 'text/html'; // Default content type
+
+      // Determine the content type
+      switch (ext) {
+        case '.html': contentType = 'text/html'; break;
+        case '.css': contentType = 'text/css'; break;
+        case '.js': contentType = 'text/javascript'; break;
+        case '.png': contentType = 'image/png'; break;
+        case '.jpg':
+        case '.jpeg': contentType = 'image/jpeg'; break;
+        case '.gif': contentType = 'image/gif'; break;
+        default: contentType = 'application/octet-stream'; break;
+      }
+
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(data);
+    }
+  });
+};
 
 // Create the HTTP server
 const server = http.createServer(async (req, res) => {
@@ -77,9 +109,9 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Default response for unsupported routes
-  res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ message: 'Route not found' }));
+  // Serve static files for the portfolio
+  const requestedFilePath = path.join(publicFolderPath, parsedUrl.pathname === '/' ? 'index.html' : parsedUrl.pathname);
+  serveStaticFile(requestedFilePath, res);
 });
 
 // Start the server
