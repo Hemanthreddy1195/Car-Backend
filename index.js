@@ -164,6 +164,29 @@ if (method === 'GET' && parsedUrl.pathname === '/') {
   return;
 }
 
+if (method === 'GET') {
+  const filePath = parsedUrl.pathname === '/' ? 'index.html' : `.${parsedUrl.pathname}`;
+
+  // Determine the correct content type
+  const extname = String(filePath).split('.').pop();
+  let contentType = 'text/html';
+  if (extname === 'css') contentType = 'text/css';
+  else if (extname === 'js') contentType = 'text/javascript';
+  else if (['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extname)) contentType = `image/${extname}`;
+  else if (extname === 'json') contentType = 'application/json';
+
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('File not found');
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': contentType });
+    res.end(data);
+  });
+  return;
+}
+
 // Default route
 res.writeHead(404, { 'Content-Type': 'application/json' });
 res.end(JSON.stringify({ message: 'Route not found' }));
