@@ -6,7 +6,7 @@ const fs = require('fs');
 
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://hemanth372reddy:IiUrO9ssus0CKIjC@cluster1.plc5q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1', {
+mongoose.connect('mongodb+srv://hemanth372reddy:svnOaxXytYKegFM2@cluster1.plc5q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1', {
 }).then(() => {
   console.log('Connected to MongoDB');
 }).catch((err) => {
